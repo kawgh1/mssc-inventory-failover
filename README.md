@@ -43,9 +43,9 @@
     - Netflix has placed Hystrix into maintenance mode, Spring suggests to use Resilience4J
     
 - ### In this project:
-    - # Create Inventory Failover Service
-    - Configure Spring Cloud Gateway to use circuit breaker for failover
-    - Configure Feign to use Circuit Breaker
+    - #### Create Inventory Failover Service
+    - Configure [Spring Cloud Gateway](https://github.com/kawgh1/mssc-brewery-gateway) to use circuit breaker for failover
+    - Configure [Beer Inventory Service Feign](https://github.com/kawgh1/mssc-beer-inventory-service/tree/initial-project/src/main/java/com/kwgdev/beer/inventory/service/config) to use Circuit Breaker
 
 ### Steps for Deconstruction into  Microservices
 ##### 1. Dependency Management
