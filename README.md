@@ -4,8 +4,10 @@
 - **Note: Do NOT have WebFlux and Spring MVC both on the same classpath - unpredictable result will occur**
 
 - **Also need to run Eureka Server** with ("local-discovery") Profile set so that the Failover Service can be found (GET requested by the other Microservices)
-    at **localhost:8083/inventory-failover**
-
+    at **http://localhost:8083/inventory-failover**
+- Access Eureka Console to verify @ http://localhost:8761/
+  
+  
 ## MSSC Inventory Failover Service - Microservice
 
 - The idea with this Inventory Failover Service is if our main Beer Inventory Service fails or is unavailable, this Failover service
