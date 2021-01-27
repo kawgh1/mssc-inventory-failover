@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +33,10 @@ public class InventoryHandler {
     // we're just building a Beer Inventory POJO, setting random UUID for id, All 0's for beerId, QuantityOnHand default of 999
     // and returning this stub
     public Mono<ServerResponse> listInventory(ServerRequest request) {
-        return ServerResponse.ok()
+
+
+
+        Mono<ServerResponse> response = ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_STREAM_JSON)
                 .body(Mono.just(Arrays.asList(
                         BeerInventoryDto.builder()
@@ -42,6 +46,13 @@ public class InventoryHandler {
                                 .createdDate(OffsetDateTime.now())
                                 .lastModifiedDate(OffsetDateTime.now())
                                 .build())), List.class);
+
+        System.out.println(request);
+        System.out.println("Request URI:  " + request.uri());
+        System.out.println("Request Local Address:  " + request.localAddress());
+        System.out.println("Request Path:  " + request.path());
+        System.out.println( ZonedDateTime.now() + "  Inventory Failover received request. Responded with default 999 inventory mock. " );
+        return response;
     }
 
 //     example of returned JSON
