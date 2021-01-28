@@ -65,6 +65,9 @@
 ##### 12. Circuit Breaker
 ##### 13. Spring Cloud Config
 ##### 14. Distributed Tracing
+#### 15. Securing Spring Cloud
+#### 16. Building Docker Images
+#### 17. Docker Compose
 
 ##### For microservices to use JMS Messaging on localhost, Docker must be installed and localhost must be connected to an ActiveMQ Server
 [https://github.com/vromero/activemq-artemis-docker](https://github.com/vromero/activemq-artemis-docker)
