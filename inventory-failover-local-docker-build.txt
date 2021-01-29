@@ -1,0 +1,76 @@
+Because the Inventory Service is dependent on a Maven published repo in the BOM, I am using the instructor's docker image to pull from.
+Otherwise I would have to publish my own Maven repo to inherit from.
+
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------< com.kwgdev:mssc-inventory-failover >-----------------
+[INFO] Building mssc-inventory-failover 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- docker-maven-plugin:0.33.0:build (default-cli) @ mssc-inventory-failover ---
+[WARNING] Invalid POM for com.github.jknack:handlebars:jar:4.0.7, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Invalid POM for com.github.jknack:handlebars-helpers:jar:4.0.7, transitive dependencies (if any) will not be available, enable debug logging for more details
+[INFO] Copying files to C:\Users\----\IdeaProjects\mssc-inventory-failover\target\docker\sfgbeerworks\mssc-inventory-failover\build\maven
+[INFO] Building tar: C:\Users\----\IdeaProjects\mssc-inventory-failover\target\docker\sfgbeerworks\mssc-inventory-failover\tmp\docker-build.tar
+[INFO] DOCKER> [sfgbeerworks/mssc-inventory-failover:latest] "mssc-inventory-failover": Created docker-build.tar in 6 seconds
+[INFO] DOCKER> Step 1/13 : FROM openjdk:11-jre-slim as builder
+[INFO] DOCKER>
+[INFO] DOCKER> ---> ff68ba8d72c9
+[INFO] DOCKER> Step 2/13 : WORKDIR application
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Using cache
+[INFO] DOCKER> ---> 3e6956397948
+[INFO] DOCKER> Step 3/13 : ADD maven/mssc-inventory-failover-0.0.1-SNAPSHOT.jar mssc-inventory-failover-0.0.1-SNAPSHOT.jar
+[INFO] DOCKER>
+[INFO] DOCKER> ---> aeb53693dac7
+[INFO] DOCKER> Step 4/13 : RUN java -Djarmode=layertools -jar mssc-inventory-failover-0.0.1-SNAPSHOT.jar extract
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 43372a1af1b4
+[INFO] DOCKER> Removing intermediate container 43372a1af1b4
+[INFO] DOCKER> ---> 7c1c70b1ed0f
+[INFO] DOCKER> Step 5/13 : FROM openjdk:11-jre-slim
+[INFO] DOCKER>
+[INFO] DOCKER> ---> ff68ba8d72c9
+[INFO] DOCKER> Step 6/13 : LABEL PROJECT_NAME=mssc-inventory-failover       PROJECT=com.kwgdev:mssc-inventory-failover:jar:0.0.1-SNAPSHOT
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in 6fb890fb69b2
+[INFO] DOCKER> Removing intermediate container 6fb890fb69b2
+[INFO] DOCKER> ---> a7645557cd7b
+[INFO] DOCKER> Step 7/13 : EXPOSE 8080
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in d559a2dd6758
+[INFO] DOCKER> Removing intermediate container d559a2dd6758
+[INFO] DOCKER> ---> 6c22aa939f45
+[INFO] DOCKER> Step 8/13 : WORKDIR application
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in e83e5594a06f
+[INFO] DOCKER> Removing intermediate container e83e5594a06f
+[INFO] DOCKER> ---> 6c2e61bd40de
+[INFO] DOCKER> Step 9/13 : COPY --from=builder application/dependencies/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> e38f595727a7
+[INFO] DOCKER> Step 10/13 : COPY --from=builder application/spring-boot-loader/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> 032b21c38223
+[INFO] DOCKER> Step 11/13 : COPY --from=builder application/snapshot-dependencies/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> 402d4741c966
+[INFO] DOCKER> Step 12/13 : COPY --from=builder application/application/ ./
+[INFO] DOCKER>
+[INFO] DOCKER> ---> 07cb91f87433
+[INFO] DOCKER> Step 13/13 : ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "org.springframework.boot.loader.JarLauncher"]
+[INFO] DOCKER>
+[INFO] DOCKER> ---> Running in dcd4b07c1724
+[INFO] DOCKER> Removing intermediate container dcd4b07c1724
+[INFO] DOCKER> ---> 0c01a9934f09
+[INFO] DOCKER> Successfully built 0c01a9934f09
+[INFO] DOCKER> Successfully tagged sfgbeerworks/mssc-inventory-failover:latest
+[INFO] DOCKER> [sfgbeerworks/mssc-inventory-failover:latest] "mssc-inventory-failover": Built image sha256:0c01a
+[INFO] DOCKER> [sfgbeerworks/mssc-inventory-failover:latest] "mssc-inventory-failover": Tag with latest,0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.352 s
+[INFO] Finished at: 2021-01-28T23:16:13-06:00
+[INFO] ------------------------------------------------------------------------
